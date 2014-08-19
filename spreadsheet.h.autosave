@@ -1,0 +1,111 @@
+#ifndef SPREADSHEET_H
+#define SPREADSHEET_H
+
+#include <QTableView>
+#include <QDateTime>
+#include <itimetrackingmodel.h>
+#include <QStringList>
+#include <QMutex>
+#include <QFile>
+#include "misc.h"
+#include "iconnection.h"
+
+#include <memory.h>
+
+class Spreadsheet : public QTableView
+{
+    Q_OBJECT
+
+public:
+    Spreadsheet(ITimeTrackingModel* timeTrackingModel, QWidget *parent);
+    Spreadsheet(QWidget *parent = 0);
+
+
+    bool isStarted() const;
+    bool isStopped() const;
+
+    void setTimeTrackingModel(ITimeTrackingModel* timeTrackingModel);
+    void updateContent();
+    void setParent(IConnection* parent) {
+        mParent = parent;
+    }
+    bool sheetOfCurMonth() const;
+
+signals:
+    void modified();
+
+public slots:
+    void startTT();
+    void stopTT();
+    void pauseTT();
+    void copy();
+    void paste();
+
+public slots:
+    void somethingChanged();
+    void lockUnlock(bool unlock);
+
+private:
+    mutable QMutex* mutex;
+
+    class Col {
+    public:
+        enum { WeekDay = 0, StartTime, EndTime, Pause, WorkedTime, RequiredTime, Difference, Comment,
+               MaxCol /* Leave me last !*/
+             };
+    };
+    enum { MagicNumber = 0x7F51C883, ColumnCount = Col::MaxCol };
+
+    const QString mColNameDay;
+    const QString mColNameStartTime;
+    const QString mColNameEndTime;
+    const QString mColNamePauseTime;
+    const QString mColNameWorkedTime;
+    const QString mColNameRequiredTime;
+    const QString mColNameDueOverHours;
+    const QString mColNameComment;
+
+    QStringList mColumnsName;
+    QStringList mColumnsPattern;
+    ITimeTrackingModel* mTimeTrackingModel;
+    int mSignalActDeactSemaphore;
+    IConnection* mParent;
+
+    void setStartTime(int day, const QTime& startTime);
+
+    void displayStartTime(int day);
+    void displayPause(int day);
+    void displayRequiredTime(int day);
+    void displayEndTime(int day);
+    void displayComment(int day);
+
+    void recalculateDay(int day);
+
+    void fillDayNames(int daysInMonth);
+    void clear(int daysInMonth);
+    void createEmptyCells(int daysInMonth);
+
+    QTableWidgetItem * getNewDefaultFormattedCell(int col, const QString& string = "") const;
+
+
+    QString formatString(const QString &string) const;
+
+    void activateSignal();
+    void deactivateSignal();
+
+    void resizeEvent(QResizeEvent* event);
+
+
+};
+template <class T, class U=std::allocator<T> > class TArray {
+    T t;
+};
+
+template <class T, template<class U, class V = std::allocator<U> > class Seq >
+class Container {
+    Seq<T> t;
+public:
+    int f(T a);
+};
+
+#endif

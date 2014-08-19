@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/tt_cross.png</file>
+        <file>images/tt_icon.png</file>
+        <file>images/tt_start.png</file>
+        <file>images/tt_stop.png</file>
+        <file>images/tt_export.png</file>
+        <file>images/tt_open.png</file>
+        <file>images/tt_pause.png</file>
+        <file>images/tt_preferences.png</file>
+        <file>images/tt_save.png</file>
+        <file>images/tt_unlock.png</file>
+        <file>images/tt_copy.png</file>
+        <file>images/tt_paste.png</file>
+        <file>images/tt_splash.png</file>
+        <file>images/tt_2black_coffees_bk_gnd.png</file>
+        <file>images/tt_print.png</file>
+        <file>images/tt_print_preview.png</file>
+        <file>images/tt_glass.png</file>
+        <file>images/tt_2black_coffees_bk_gnd_30x30.png</file>
+        <file>images/tt_2black_coffees_bk_gnd_60x60.png</file>
+        <file>images/tt_about_main.png</file>
+        <file>images/tt_title_bar.png</file>
+        <file>images/tt_ok_button_not_selected.png</file>
+        <file>images/tt_ok_button_selected_dollar.png</file>
+        <file>images/tt_ok_button_selected_default.png</file>
+    </qresource>
+</RCC>

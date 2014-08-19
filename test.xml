@@ -1,0 +1,32 @@
+ <ett version = "0.1"
+        userName ="myUser"
+        year = "2013"
+        month="1"
+        prevMonthlyOverDueHours="8690">
+ 
+     <day number = "1"
+          started = "8:02"
+          ended = "17:03"
+          pause = "0:45"
+          requiredWorkTime = "8:00"
+          comment = "" />
+     <day number = "2"
+          started = "8:10"
+          ended = "17:13"
+          pause = "0:45"
+          requiredWorkTime = "8:00"
+          comment = "Day 2" />
+     <day number = "3"
+          started = "9:02"
+          ended = "19:03"
+          pause = "0:45"
+          requiredWorkTime = "8:00"
+          comment = "" />
+     <day number = "4"
+          started = "10:02"
+          ended = "20:03"
+          pause = "0:45"
+          requiredWorkTime = "8:00"
+          comment = "Day 4" />
+   </ett>
+ 
